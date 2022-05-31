@@ -1,0 +1,30 @@
+# Production Environment:
+	- the complete set of services, where your customer consumes your API.
+
+# Main steps:
+	1- Deploy a database using AWS RDS. -- (Relational Database Service) --> hosts the DB
+		-- connect from local terminal:
+			** psql postgres://osomaher:osomaher123@osomaherdb.c9cgcbjfdejg.us-east-1.rds.amazonaws.com/osomaherdb
+		-- connect the project via .ENV variables
+	2- Deploy a web server using AWS EB. -- (Elastic Beanstalk) --> hosts the Web Server [language runtime]
+	3- Deploy a web UI using AWS S3. -- (Simple Storage Service) --> hosts files (object-based storage=[filename=filecontent]) [no access to fileSystem]
+
+# CLI: allows for CI/CD pipeline Which can automate operations on the production environment.
+
+# steps to setup a Production Env:
+	1- package.json
+	2- framework info
+	4- external APIs || DBs
+
+* Multi-AZ: (Multiple Availability Zones)
+	- your DB can be phisically in multiple data-centers @ independent zones
+	** hepls to stay online if one data-center goes down **
+
+* EC2: (Elastic Compute Cloud)
+* SNS: (Simple Notification Service)
+
+# ACL policy: (Access Control List) JSON or yml file -> control who can access S3 buckets
+
+# 3-tier full stack application = (UI, API, and DB)
+
+# VPC (Virtual Private Cloud)

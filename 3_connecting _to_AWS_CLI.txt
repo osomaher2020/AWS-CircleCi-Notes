@@ -1,0 +1,39 @@
+# S3
+	1- download & install AWS CLI MSI
+		* from: https://awscli.amazonaws.com/AWSCLIV2.msi
+	2- $ aws --version
+	3- on AWS console:
+		- create new IAM user with (access_key & secret_key & region)
+	4- $ aws configure
+		* input your IAM credientials
+	5- $ aws configure list
+	6- $ aws s3 cp --recursive --acl public-read ./www s3://bucket-name/
+		** after building your "frontend-app"
+
+# RDS
+	* connect from local terminal:
+		** psql postgres://db-user:password@RDS-host/db-name
+	* connect the "backend-api" via .ENV variables
+
+# EB
+	* $ aws configure
+	1- $ eb init <application-name> --platform node.js --region us-east-1
+	2- $ eb create <environment-name>
+		** --sample    if you wanna start with a sample app
+	3- $ eb use <environment-name>
+	4- build your api-app && Archive what is inside www/
+		# Windows:
+			"clean": "rmdir /S/Q \"www/\" || (exit 0)",
+    			"build": "npm run clean && tsc && copy \"package.json\" \"www/package.json\" && cd www && 7z.exe a -tzip \"Archive.zip\" . && cd ..",
+		# Linux / Mac:
+			"clean": "rm -rf www/ || true",
+			"build": "npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
+	5- @ .elasticbeanstalk/config.yml add:
+		deploy:
+			artifact: www/Archive.zip
+	6- $ eb deploy <environment-name>
+	7- $ eb open
+	** if you faced errors --> review EB log from AWS console
+		$ eb setenv PORT=3000
+		... all other .env variables || you will read them from CircleCI
+	8- $ eb terminate --> to terminate your environment and all of the resources that it use

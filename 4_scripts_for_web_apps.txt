@@ -1,0 +1,68 @@
+# Scripts: are the foundation of automation, enables to:
+	- repeat actions (Deploying, building, and testing)
+	- solve complicated problems that would take multiple CLI commands to fix
+	- migrate data from one database to another.
+
+# you will learn:
+	- writing scripts --> @ package.json
+	- Deployment scripts --> (series of commands that will update your application) usually
+		* like: deploying your latest code to EB || updating the content hosted on S3
+	- Build Scripts
+	- Test Scripts
+
+# How to create a script:
+	1- Start from the commands you already know.
+	2- Look for pre-built scripts (like Angular build).
+	3- Add simple "scripts" directly in the package.json
+	4- Add complicated scripts inside a "script file" (ex: deploy.sh) that is called from the package.json.
+		- usually will be in /bin folder & has *.sh (shell)
+		- then @ package.json --> "deploy":  "chmod +x ./bin/deploy.sh && ./bin/deploy.sh"
+			** +x --> execute permission
+
+	** scripts that you define in package.json are directly executed in the terminal.
+		- npm run <script-name>
+
+# How to create a Build script:
+	1- Check if the framework offers a pre-made build scripts.
+		- like: React & Angular
+		-- search: create-react-app script
+		@package.json
+		"devDependencies": {
+			"react-scripts": "1.0.7"
+		}
+		"scripts" : {
+   			"start": "react-scripts start",
+   			"build": "react-scripts build"
+		}
+	2- understand the final format of the hosting platform.
+	3- Make the build script available inside a package.json
+
+* Bundlers: packages your application code and all its dependencies.
+		in a compact format -- but understandable by browsers and servers.
+	** into a series of JS files
+	- like: (Webpack & Rollup)
+* Compilers: let you use more advanced features of the latest JS versions while maintaining compatibility with older browsers.
+	- like: (Babel)
+* Transpilers: extend the base capacities of JavaScript by adding extra features not present in the base language.
+	- like: (TypeScript)
+
+
+# Test scripts: tests the app code against a pre-defined scenarios
+
+	* we run tests in this order:
+		1- Unit tests: the fastest and most simple tests.
+			* If our app doesn't pass unit tests, we don't have to run the more complex tests.
+		2- Integration tests: check if API calls are successful.
+		3- End to End (E2E) and UI tests: are often complex and involve some form of setup.
+			* E2E: ensure a complete workflow is working -- (signing up a user || buying a product) -- ex: Cypress
+			* Cypress --> UI test suite -> starts a development server & a mock browser to execute your tests
+
+** Why we use automated tests?
+	- manual tests are slower and more expensive while developing and updating features
+	- catching errors earlier before deployment
+	- we can plan for more error cases in automated tests than would be possible in manual tests
+
+
+* Shell: terminal program that processes commands and returns the output.
+* Bash (Born again shell): Shell + more advanced features
+* Powershell: terminal program available on windows

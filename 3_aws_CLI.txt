@@ -1,0 +1,46 @@
+AWS CLI : controls all AWS services, can send commands to EB
+EB CLI : Developer tool specified for EB (easier than AWS CLI)
+
+IAM (Identity Access Management) : keys that hold associated permissions to give access to your account.
+	- Access Key ID
+	- Secret access key
+	** both will be passed to ENV
+
+# installing EB CLI
+	- install python & pip & add it to PATH
+	- pip install awsebcli --upgrade --user
+	- %USERPROFILE%\AppData\roaming\Python\Python37\scripts to PATH
+	- eb --version
+	** https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-cmd-commands.html
+		- eb init --> will ask you questions to connect the EB to the right app & AWS region
+		- eb use <application-name>   ---> to connect your local EB CLI to the environment
+		- eb deploy <environment-name>
+		- en health ---> Check the health of the environment  & bring up information about the servers running your application
+		- eb logs --> to inspect failures
+
+
+# (eb deploy) steps under the hood
+	1- The application is packaged into a zip file
+	2- The zip file is uploaded to an S3 bucket
+	3- The bundled zip is then downloaded onto EB servers
+	4- The servers are then updated with the new version of the code
+
+# Blue/Green deployment:
+	- used in a production environment to avoid downtime while performing an update
+	- require that your environment runs independently of your production database
+
+# Cache-Control: HTTP headers telling the browser how long it needs to cache certain files
+	- aws s3 cp --acl public-read --cache-control="max-age=0, no-cache, no-store, must-revalidate" ./build/index.html s3://BUCKET_NAME/
+
+# S3 CLI
+	- MAKE-Bucket: aws s3 mb s3://bucket-name
+	- LIST-ALL: aws s3 ls
+	- LIST-One: aws s3 ls s3://bucket-name
+	- REMOVE-BUCKET: aws s3 rb s3://bucket-name --force
+	- REMOVE-Object: aws s3 rm s3://bucket-name/example/filename.txt --recursive
+	- UPLOAD: aws s3 cp --recursive --acl public-read ./build s3://bucket-name/
+		* --recursive (copy all subfolders)
+		* --acl (read publicly)
+		* source
+		* destination bucket
+	*** upload (build || www) folder only

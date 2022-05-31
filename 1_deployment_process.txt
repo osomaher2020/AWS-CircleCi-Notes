@@ -1,0 +1,34 @@
+# Deploying an application includes the following steps:
+	1- Determining what cloud resources are needed.
+	2- Preparing the application code for production and deploying it for the first time.
+	3- Creating a deployment process that you will automate using a CI/CD Pipeline.
+	4- Documenting your process and iterating on it.
+
+* DevOps: A collection of techniques trying to bridge the gap between development and operations.
+
+* CI (Continous Integration): handles the integration of new code into the main code-base in a consistent and repeatable way.
+	- everyone merging code changes to a central repository multiple times a day
+
+* Pipeline: A series of automated steps (Command-Line Interface commands) --> grouped in -> script_files
+	that simplify the testing, building, and deployment of code.
+
+* Cloud Provider: Companies that offer servers for rent and hosting services.
+
+* CD (Continuous Delivery/Deployment)
+	- Continuous Delivery: automating the entire software release process
+		-- (CI + automatically prepare and track a release to production)
+		-- deployment to production is manual
+	- Continuous Deployment: every change in the source code is deployed to production automatically
+		-- CI + CD + fully automated deployment to production
+
+* CI/CD service runs all tests and deploying the code to production
+
+* CircleCI: used to create a well-documented deployment Pipeline
+
+* Features should be in production when the application has passed a sensible set of pipeline steps with success.
+
+* Manual Check: A step in a pipeline that requires human approval before going to the next step.
+
+* QA (quality assurance)
+
+* EC2: Elastic Compute Cloud

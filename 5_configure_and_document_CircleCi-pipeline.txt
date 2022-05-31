@@ -1,0 +1,35 @@
+# Pipeline: set of instructions be executed on a server --> for: building & deploying our App
+
+# pipeline benefits:
+	- Faster feedback about the code
+	- Getting features deployed faster
+
+# characteristics of a good pipeline:
+	- Readable: Having multiple long commands will make it hard to understand.
+	- Logic is inside scripts: for more portability to other pipeline providers.
+	- Constantly evolving: it fit the need of the project and evolve as your project gains maturity.
+
+# Pipelines are written inside configuration files as a list of steps -> inside ".circleci" folder & with name: "config.yml"
+	* contains:
+		- CircleCI version
+		- Orbs: (reusable configurations) to setup specific software on the server executing our pipeline.
+			-- ex: setup node.js || install the AWS CLI || EB CLI
+		- Jobs [Excuter + Steps]: (running scripts & calling CLI commands) to install, build or deploy our application.
+			-- ex: npm install, npm run build, ...
+		- Workflows: execution order of the jobs & specify manual approvals & make a job depend on another.
+
+# CI (Continuous integration): steps in our pipeline to verify if code is ->
+	1- ready to be merged when a pull request is submitted
+	2- ready and safe to be deployed (By: installing dependencies and testing the code)
+		- Linting: verify that code follows standards of quality.
+			-- ESLint or Prettier
+		- Installing: calling "npm install" -- to download node_modules on pipeline server
+		- Testing: calling the different test scripts.
+			-- units, integration and E2E
+		- Building: calling the build script.
+
+# CD (Continuous delivery || continuous deployment):
+	- Publishing: to a registery
+		-- like: NPM package, Docker images on docker hub
+	- Deploying: sending latest code to production environment
+		-- like: S3, EB

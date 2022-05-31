@@ -1,0 +1,11 @@
+# Ways to document?
+	- Architecture diagrams: give a visual reference to parts of your project
+		-- https://www.diagrams.net/
+		-- https://www.lucidchart.com/
+	- Runbooks: step-by-step guides that let you quickly remember how to accomplish certain operations
+	- Markdown files: a quick glimpse into the details of the project (giving quick documentation)
+		-- README.md file that is present on most GitHub repo
+		-- VS code -> Markdown extension -- offers a peview :)
+	- Documentation sites: to host all your documentation in one central location.
+		-- https://www.docusaurus.io
+		-- https://www.atlassian.com/software/confluence
